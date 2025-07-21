@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест кнопок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            background: #007acc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0066aa;
+        }
+        #log {
+            background: #2a2a2a;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тест кнопок рефакторной версии</h1>
+    
+    <button id="add-slide" class="btn">+ Слайд</button>
+    <button id="add-text" class="btn">Добавить текст</button>
+    <button id="load-video" class="btn">Загрузить видео</button>
+    <button id="prev-slide" class="btn">◀ Назад</button>
+    <button id="next-slide" class="btn">Вперед ▶</button>
+    
+    <div id="log">
+        <h3>Лог событий:</h3>
+        <div id="log-content"></div>
+    </div>
+
+    <script>
+        function log(message) {
+            const logContent = document.getElementById('log-content');
+            const time = new Date().toLocaleTimeString();
+            logContent.innerHTML += `<div>[${time}] ${message}</div>`;
+            logContent.scrollTop = logContent.scrollHeight;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            log('DOM загружен');
+            
+            // Тестируем доступность кнопок
+            const testButtons = ['add-slide', 'add-text', 'load-video', 'prev-slide', 'next-slide'];
+            testButtons.forEach(buttonId => {
+                const btn = document.getElementById(buttonId);
+                if (btn) {
+                    log(`✓ Кнопка ${buttonId} найдена`);
+                    btn.addEventListener('click', () => {
+                        log(`🔥 Кнопка ${buttonId} нажата!`);
+                    });
+                } else {
+                    log(`✗ Кнопка ${buttonId} НЕ найдена!`);
+                }
+            });
+            
+            log('Инициализация завершена');
+        });
+    </script>
+</body>
+</html>

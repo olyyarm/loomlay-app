@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видео Презентации - Редактор</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/timeline.css">
+    <link rel="stylesheet" href="styles/layers.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Главная панель инструментов -->
+        <header class="toolbar">
+            <div class="toolbar-section">
+                <button id="add-slide" class="btn">+ Слайд</button>
+                <button id="load-video" class="btn btn-primary">Загрузить видео</button>
+                <button id="add-text" class="btn">Добавить текст</button>
+                <button id="add-image" class="btn">Добавить изображение</button>
+            </div>
+            <div class="toolbar-section">
+                <div class="slide-navigation">
+                    <button id="prev-slide" class="btn">◀</button>
+                    <span id="slide-counter">Слайд 1 из 1</span>
+                    <button id="next-slide" class="btn">▶</button>
+                </div>
+                <button id="preview" class="btn btn-success">Предпросмотр</button>
+                <button id="fullscreen-present" class="btn btn-success">📺 Презентация</button>
+                <button id="export" class="btn btn-warning">Экспорт</button>
+                <button id="save-project" class="btn">Сохранить</button>
+                <button id="load-project" class="btn">Загрузить проект</button>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <!-- Панель слоев -->
+            <aside class="layers-panel">
+                <h3>Слои</h3>
+                <div id="layers-list" class="layers-list">
+                    <!-- Слои будут добавляться динамически -->
+                </div>
+            </aside>
+
+            <!-- Основная рабочая область -->
+            <main class="workspace">
+                <div class="canvas-container">
+                    <div id="canvas" class="canvas">
+                        <video id="background-video" class="background-video" loop muted>
+                            <source src="" type="video/mp4">
+                        </video>
+                        <div id="elements-container" class="elements-container">
+                            <!-- Текстовые и графические элементы -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Панель свойств -->
+            <aside class="properties-panel">
+                <h3>Свойства</h3>
+                <div id="properties-content" class="properties-content">
+                    <p>Выберите элемент для редактирования</p>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Таймлайн -->
+        <footer class="timeline-container">
+            <div class="timeline-controls">
+                <button id="play-pause" class="btn">▶</button>
+                <span id="current-time">0:00</span>
+                <input type="range" id="timeline-scrubber" min="0" max="100" value="0">
+                <span id="total-time">0:00</span>
+            </div>
+            <div id="timeline" class="timeline">
+                <!-- Треки таймлайна -->
+            </div>
+        </footer>
+    </div>
+
+    <!-- Модальные окна -->
+    <div id="preview-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="preview-container" class="preview-container">
+                <!-- Предпросмотр презентации -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Полноэкранная презентация -->
+    <div id="fullscreen-presentation" class="fullscreen-presentation">
+        <div id="fullscreen-slides" class="fullscreen-slides">
+            <!-- Слайды будут добавляться динамически -->
+        </div>
+        
+        <div class="slide-indicator" id="slide-indicator">
+            Слайд 1 из 1
+        </div>
+        
+        <div class="fullscreen-controls">
+            <button class="fullscreen-btn" id="prev-fullscreen">◀ Назад</button>
+            <button class="fullscreen-btn" id="play-pause-fullscreen">⏸ Пауза</button>
+            <button class="fullscreen-btn" id="next-fullscreen">Вперед ▶</button>
+            <button class="fullscreen-btn" id="exit-fullscreen">✕ Выход</button>
+        </div>
+    </div>
+
+    <!-- Скрытые input для загрузки файлов -->
+    <input type="file" id="video-input" accept="video/mp4,video/webm" style="display: none;">
+    <input type="file" id="image-input" accept="image/png" style="display: none;">
+    <input type="file" id="project-input" accept=".json" style="display: none;">
+
+    <!-- Подключение библиотек -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Подключение модулей -->
+    <script src="js/modules/SlideManager.js"></script>
+    <script src="js/modules/ElementManager.js"></script>
+    <script src="js/modules/AnimationManager.js"></script>
+    <script src="js/modules/RenderManager.js"></script>
+    <script src="js/modules/ProjectManager.js"></script>
+    
+    <!-- Подключение вспомогательных модулей -->
+    <script src="js/timeline.js"></script>
+    <script src="js/layers.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/export.js"></script>
+    
+    <!-- Основное приложение -->
+    <script src="js/app-refactored.js"></script>
+</body>
+</html>
